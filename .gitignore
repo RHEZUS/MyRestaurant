@@ -2,3 +2,6 @@ venv/
 db.sqlite3
 srver/settings.py
 srver/secret_settings/*
+# Ignore Python bytecode files
+*.pyc
+__pycache__/
