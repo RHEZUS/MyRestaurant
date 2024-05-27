@@ -1,2 +1,4 @@
 venv/
 db.sqlite3
+srver/settings.py
+srver/secret_settings/*

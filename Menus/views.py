@@ -2,7 +2,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
-from .models import Menu
+from .models import Menus
 from .serializers import MenuSerializer
 from rest_framework.authtoken.models import Token
 from django.shortcuts import get_object_or_404
@@ -19,7 +19,7 @@ class MenuListView(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request):
-        menus = Menu.objects.all()
+        menus = Menus.objects.all()
         serializer = MenuSerializer(menus, many=True)
         return Response(serializer.data)
 
@@ -44,12 +44,12 @@ class MenuDetails(APIView):
 
     def get_object(self, pk, user):
         try:
-            menu = Menu.objects.get(pk=pk)
+            menu = Menus.objects.get(pk=pk)
             if menu.restaurant.user != user:
                 #raise PermissionDenied("You do not have permission to modify this menu item.")
                 raise Http404
             return menu
-        except Menu.DoesNotExist:
+        except Menus.DoesNotExist:
             raise Http404
 
     def get(self, request, pk):
