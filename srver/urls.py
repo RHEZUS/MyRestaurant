@@ -19,9 +19,13 @@ from django.urls import path, re_path, include
 from . import views
 from django.conf.urls.static import static
 from django.conf import settings
+from .views import welcome_view
+admin.site.site_header = "Ludiv Solutions"
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', welcome_view, name='welcome'),
     re_path('login', views.login),
     re_path('signup', views.signup),
     re_path('test_token', views.test_token),
