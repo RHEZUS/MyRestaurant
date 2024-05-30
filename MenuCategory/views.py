@@ -12,19 +12,15 @@ from users.middleware import AdminRoleMiddleware
 @authentication_classes([SessionAuthentication, TokenAuthentication])
 @permission_classes([IsAuthenticated])
 def menu_category_list(request):
-    admin_middleware = AdminRoleMiddleware(None)  # Apply AdminRoleMiddleware
-    response = admin_middleware(request)
-    if response:
-        return response
-
     if request.method == 'GET':
-        menu_categories = MenuCategory.objects.all()
+        menu_categories = MenuCategory.objects.filter(user=request.user)
         serializer = MenuCategorySerializer(menu_categories, many=True)
         return Response(serializer.data)
     elif request.method == 'POST':
         serializer = MenuCategorySerializer(data=request.data)
         if serializer.is_valid():
-            serializer.save()
+            category = serializer.save(user=request.user)
+            #serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -32,12 +28,7 @@ def menu_category_list(request):
 @authentication_classes([SessionAuthentication, TokenAuthentication])
 @permission_classes([IsAuthenticated])
 def menu_category_detail(request, pk):
-    admin_middleware = AdminRoleMiddleware(None)  # Apply AdminRoleMiddleware
-    response = admin_middleware(request)
-    if response:
-        return response
-
-    menu_category = get_object_or_404(MenuCategory, pk=pk)
+    menu_category = get_object_or_404(MenuCategory, pk=pk, user=request.user)
     if request.method == 'GET':
         serializer = MenuCategorySerializer(menu_category)
         return Response(serializer.data)

@@ -1,26 +1,13 @@
 from rest_framework import serializers
-from .models import Restaurant, User
-from Menus.models import Menus
-
-class UserSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User
-        fields = ['id', 'username', 'email']  # include relevant fields
-
-class MenuSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Menus
-        fields = ['id', 'name', 'slug', 'desc', 'price', 'image', 'is_available'] 
+from .models import Restaurant
+from users.serializers import UserSerializer
+from Menus.serializers import MenuSerializer
 
 class RestaurantSerializer(serializers.ModelSerializer):
     user = UserSerializer(read_only=True)
-    menus = MenuSerializer(many=True, read_only=True, source='menu_set')
+    menus = MenuSerializer(many=True, read_only=True)
+
     class Meta:
         model = Restaurant
-        fields = ['id', 'name', 'desc', 'logo_url', 'location', 'qr_code', 'user', 'menus']
+        fields = ['id', 'name', 'user', 'location', 'logo_url', 'logo', 'qr_code', 'desc', 'menus']
         read_only_fields = ['id', 'qr_code']
-    
-    #def create(self, validated_data):
-    #    request = self.context.get('request', None)
-    #    user = request.user if request else None
-    #    return Restaurant.objects.create(user=user, **validated_data)

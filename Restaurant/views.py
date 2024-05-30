@@ -38,5 +38,15 @@ def restaurant_detail(request, pk):
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     elif request.method == 'DELETE':
+        # Check if the restaurant has a logo, delete it if exists
+        if restaurant.logo:
+            restaurant.logo.delete(save=True)
+        
+        # Check if the restaurant has a QR code image, delete it if exists
+        if restaurant.qr_code:
+            restaurant.qr_code.delete(save=True)
+        
+        # Delete the restaurant object
         restaurant.delete()
+        
         return Response(status=status.HTTP_204_NO_CONTENT)

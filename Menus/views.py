@@ -12,11 +12,6 @@ from users.middleware import AdminRoleMiddleware
 @authentication_classes([SessionAuthentication, TokenAuthentication])
 @permission_classes([IsAuthenticated])
 def menu_list(request):
-    admin_middleware = AdminRoleMiddleware(None)  # Apply AdminRoleMiddleware
-    response = admin_middleware(request)
-    if response:
-        return response
-
     if request.method == 'GET':
         menus = Menus.objects.all()
         serializer = MenuSerializer(menus, many=True)
@@ -32,11 +27,6 @@ def menu_list(request):
 @authentication_classes([SessionAuthentication, TokenAuthentication])
 @permission_classes([IsAuthenticated])
 def menu_detail(request, pk):
-    admin_middleware = AdminRoleMiddleware(None)  # Apply AdminRoleMiddleware
-    response = admin_middleware(request)
-    if response:
-        return response
-
     menu = get_object_or_404(Menus, pk=pk)
     if request.method == 'GET':
         serializer = MenuSerializer(menu)

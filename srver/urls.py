@@ -32,4 +32,5 @@ urlpatterns = [
     path('api/', include('users.urls')),
     path('api/', include('MenuCategory.urls')),
     path('api/', include('Restaurant.urls')),
+    path('api/', include('Menus.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
