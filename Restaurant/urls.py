@@ -1,7 +1,7 @@
 from django.urls import path
-from .views import RestaurantList, RestaurantDetail
+from . import views
 
 urlpatterns = [
-    path('restaurants/', RestaurantList.as_view(), name='restaurant-list'),
-    path('restaurants/<int:pk>/', RestaurantDetail.as_view(), name='restaurant-detail'),
+    path('restaurants/', views.restaurant_list, name='restaurant-list'),
+    path('restaurants/<int:pk>/', views.restaurant_detail, name='restaurant-detail'),
 ]
