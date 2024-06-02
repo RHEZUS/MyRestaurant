@@ -26,9 +26,9 @@ admin.site.site_header = "Ludiv Solutions"
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', welcome_view, name='welcome'),
-    re_path('login', views.login),
-    re_path('signup', views.signup),
-    re_path('test_token', views.test_token),
+    #re_path('api/login', views.login),
+    #re_path('api/signup', views.signup),
+    #re_path('api/test_token', views.test_token),
     path('api/', include('users.urls')),
     path('api/', include('MenuCategory.urls')),
     path('api/', include('Restaurant.urls')),

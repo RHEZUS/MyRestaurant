@@ -30,7 +30,13 @@ INSTALLED_APPS = [
     'Restaurant',
     'qr_code',
     'Menus',
+    'corsheaders',
 ]
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -41,6 +47,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'users.middleware.AdminRoleMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
 
 ROOT_URLCONF = 'srver.urls'
@@ -121,8 +129,39 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'users.User'
+#AUTHENTICATION_BACKENDS = ['users.authentication.EmailBackend',]
+AUTHENTICATION_BACKENDS = [
+    'users.authentication.EmailBackend',  # Custom backend
+    'django.contrib.auth.backends.ModelBackend',  # Default backend
+]
 
 # Configuration to handle file uploads
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# Allow all origins (not recommended for production)
+CORS_ALLOW_ALL_ORIGINS = True
+
+# Or specify allowed origins
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:5173',
+    # Add other origins if needed
+]
+
+# Allow specific methods
+CORS_ALLOW_METHODS = [
+    'GET',
+    'POST',
+    'PUT',
+    'PATCH',
+    'DELETE',
+    'OPTIONS'
+]
+
+# Allow specific headers
+CORS_ALLOW_HEADERS = [
+    'Authorization',
+    'Content-Type',
+]
+
 

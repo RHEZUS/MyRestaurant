@@ -5,7 +5,6 @@ from MenuCategory.models import MenuCategory
 
 class Menus(models.Model):
     name = models.CharField(max_length=100)
-    slug = models.SlugField(unique=True)
     desc = models.TextField()
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
     category = models.ForeignKey(MenuCategory, on_delete=models.CASCADE)

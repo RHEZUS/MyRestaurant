@@ -1,4 +1,5 @@
 from rest_framework.decorators import api_view
+from django.contrib.auth import authenticate
 from rest_framework.response import Response
 from rest_framework.serializers import Serializer
 from django.http import HttpResponse
@@ -13,14 +14,46 @@ from django.shortcuts import get_object_or_404
 def welcome_view(request):
     return HttpResponse("Welcome to api.ludivsolutions.tech")
 
+#@api_view(['POST'])
+#def login(request):
+#    email=request.data['email']
+#    user = get_object_or_404(User, email=email)
+#    print("the user: {} was found".format(user))
+#    if not user.check_password(request.data['password']):
+#        print("Users with email: {} not found.".format(user))
+#        return Response({"details": "Not found"}, status=status.HTTP_404_NOT_FOUND)
+#    token, created = Token.objects.get_or_create(user=user)
+#    serializer = UserSerializer(instance=user)
+#    return Response({"token":token.key, "user": serializer.data})
+
 @api_view(['POST'])
 def login(request):
-    user = get_object_or_404(User, username=request.data['username'])
-    if not user.check_password(request.data['password']):
-        return Response({"details": "Not found"}, status=status.HTTP_404_NOT_FOUND)
-    token, created = Token.objects.get_or_create(user=user)
-    serializer = UserSerializer(instance=user)
-    return Response({"token":token.key, "user": serializer.data})
+    email = request.data.get('email')
+    password = request.data.get('password')
+    
+    if email is None or password is None:
+        return Response({"details": "Email and password are required."}, status=status.HTTP_400_BAD_REQUEST)
+    
+    print(f"Authenticating user with email: {email}")
+    user = authenticate(request, email=email, password=password)
+    
+    if user is not None:
+        token, created = Token.objects.get_or_create(user=user)
+        serializer = UserSerializer(instance=user)
+        return Response({"token": token.key, "user": serializer.data})
+    else:
+        # Check if the user exists with the provided email
+        try:
+            user = User.objects.get(email=email)
+        except User.DoesNotExist:
+            return Response({"details": "User does not exist."}, status=status.HTTP_404_NOT_FOUND)
+        
+        # Check if the provided password is correct
+        if not user.check_password(password):
+            return Response({"details": "Invalid password."}, status=status.HTTP_401_UNAUTHORIZED)
+        
+        # If the user exists and the password is incorrect, return unauthorized
+        return Response({"details": "Unauthorized."}, status=status.HTTP_401_UNAUTHORIZED)
 
 
 @api_view(['POST'])

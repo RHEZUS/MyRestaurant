@@ -13,8 +13,8 @@ content-type: application/json
 
 ###
 
-GET http://127.0.0.1:8000/test_token
+GET http://127.0.0.1:8000/api/test_token
 content-type: application/json
-Authorization: Token dfe09d790ed8c28c9be5ca2c7a2f54245b11585b
+Authorization: Token 9ce0ee7821bc8e1810de3317ce81741d599b3464
 
 { }
