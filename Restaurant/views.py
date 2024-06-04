@@ -32,7 +32,7 @@ def restaurant_list(request):
             restaurant = serializer.save(user=request.user)
 
             # Generate the QR code
-            qr_data = f'http://localhost:5173/restaurant/{restaurant.id}/menus/'
+            qr_data = f'https://ludivsolutions.tech/restaurant/{restaurant.id}/menus/'
             qr = qrcode.QRCode(
                 version=1,
                 error_correction=qrcode.constants.ERROR_CORRECT_L,
@@ -75,7 +75,7 @@ def restaurant_detail(request, pk):
             restaurant = serializer.save()
 
             # Generate and save the new QR code image
-            qr_data = f'http://localhost:5173/restaurant/{restaurant.id}/menus/'
+            qr_data = f'https://ludivsolutions.tech/restaurant/{restaurant.id}/menus/'
             qr = qrcode.QRCode(
                 version=1,
                 error_correction=qrcode.constants.ERROR_CORRECT_L,
