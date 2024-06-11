@@ -1,5 +1,4 @@
 # MyRestaurant
-[![Video](media/restaurant_logos/Screenshot%20from%202024-06-11%2019-11-40.png)](media/restaurant_logos/restaurant-menu.mp4)
 <video src='restaurant_logos/restaurant-menu.mp4' width=180/>
 
 ## Introduction
