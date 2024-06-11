@@ -12,6 +12,12 @@ from users.middleware import AdminRoleMiddleware
 @authentication_classes([SessionAuthentication, TokenAuthentication])
 @permission_classes([IsAuthenticated])
 def menu_category_list(request):
+    """
+        Handle GET and POST requests for MenuCategory list.
+
+        GET: Retrieve a list of menu categories associated with the authenticated user.
+        POST: Create a new menu category for the authenticated user.
+    """
     if request.method == 'GET':
         menu_categories = MenuCategory.objects.filter(user=request.user)
         serializer = MenuCategorySerializer(menu_categories, many=True)
@@ -28,6 +34,13 @@ def menu_category_list(request):
 @authentication_classes([SessionAuthentication, TokenAuthentication])
 @permission_classes([IsAuthenticated])
 def menu_category_detail(request, pk):
+    """
+    Handle GET, PUT, and DELETE requests for a specific MenuCategory.
+
+    GET: Retrieve details of a specific menu category.
+    PUT: Update an existing menu category.
+    DELETE: Delete an existing menu category.
+    """
     menu_category = get_object_or_404(MenuCategory, pk=pk, user=request.user)
     if request.method == 'GET':
         serializer = MenuCategorySerializer(menu_category)

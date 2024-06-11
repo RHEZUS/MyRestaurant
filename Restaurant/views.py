@@ -22,6 +22,12 @@ from qr_code.qrcode.utils import QRCodeOptions
 @authentication_classes([SessionAuthentication, TokenAuthentication])
 @permission_classes([IsAuthenticated])
 def restaurant_list(request):
+    """
+    Handle GET and POST requests for Restaurant list.
+
+    GET: Retrieve a list of restaurants associated with the authenticated user.
+    POST: Create a new restaurant for the authenticated user and generate a QR code for it.
+    """
     if request.method == 'GET':
         restaurants = Restaurant.objects.filter(user=request.user)
         serializer = RestaurantSerializer(restaurants, many=True)
@@ -63,6 +69,13 @@ def restaurant_list(request):
 @authentication_classes([SessionAuthentication, TokenAuthentication])
 @permission_classes([IsAuthenticated])
 def restaurant_detail(request, pk):
+    """
+    Handle GET, PUT, and DELETE requests for a specific Restaurant.
+
+    GET: Retrieve details of a specific restaurant.
+    PUT: Update an existing restaurant.
+    DELETE: Delete an existing restaurant along with its logo and QR code.
+    """
     restaurant = get_object_or_404(Restaurant, pk=pk, user=request.user)
     
     if request.method == 'GET':

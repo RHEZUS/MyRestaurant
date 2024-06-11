@@ -14,6 +14,12 @@ from django.contrib.auth import authenticate
 @authentication_classes([SessionAuthentication, TokenAuthentication])
 @permission_classes([IsAuthenticated])
 def user_list(request):
+    """
+    Handle GET and POST requests for User list.
+
+    GET: Retrieve a list of all users.
+    POST: Create a new user.
+    """
     admin_middleware = AdminRoleMiddleware(None)  # Initialize with None as get_response
     response = admin_middleware(request)
     if response:
@@ -42,6 +48,13 @@ def user_list(request):
 @authentication_classes([SessionAuthentication, TokenAuthentication])
 @permission_classes([IsAuthenticated])
 def user_detail(request, pk):
+    """
+        Handle GET, PUT, and DELETE requests for a specific User.
+
+        GET: Retrieve details of a specific user.
+        PUT: Update an existing user.
+        DELETE: Delete an existing user.
+    """
     user = get_object_or_404(User, pk=pk)
     
     if request.method == 'GET':
@@ -62,6 +75,11 @@ def user_detail(request, pk):
 
 @api_view(['POST'])
 def login(request):
+    """
+    Handle POST request for user login.
+
+    POST: Authenticate user credentials and generate token for logged-in user.
+    """
     email = request.data.get('email')
     password = request.data.get('password')
     
@@ -95,6 +113,11 @@ def login(request):
 
 @api_view(['POST'])
 def signup(request):
+    """
+    Handle POST request for user signup.
+
+    POST: Create a new user and generate token for the user.
+    """
     serializer = UserSerializer(data=request.data)
     if serializer.is_valid():
         serializer.save()

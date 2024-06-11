@@ -15,6 +15,12 @@ from MenuCategory.serializers import MenuCategorySerializer
 @authentication_classes([SessionAuthentication, TokenAuthentication])
 @permission_classes([IsAuthenticated])
 def menu_list(request):
+    """
+    Handle GET and POST requests for Menu list.
+
+    GET: Retrieve a list of all menus.
+    POST: Create a new menu item.
+    """
     if request.method == 'GET':
         menus = Menus.objects.all()
         serializer = MenuSerializer(menus, many=True)
@@ -30,6 +36,13 @@ def menu_list(request):
 @authentication_classes([SessionAuthentication, TokenAuthentication])
 @permission_classes([IsAuthenticated])
 def menu_detail(request, pk):
+    """
+    Handle GET, PUT, and DELETE requests for a specific Menu item.
+
+    GET: Retrieve details of a specific menu item.
+    PUT: Update an existing menu item.
+    DELETE: Delete an existing menu item.
+    """
     menu = get_object_or_404(Menus, pk=pk)
     if request.method == 'GET':
         serializer = MenuSerializer(menu)
@@ -47,6 +60,11 @@ def menu_detail(request, pk):
 
 @api_view(['GET'])
 def restaurant_with_menus(request, restaurant_id):
+    """
+    Handle GET request to retrieve a restaurant with its menus categorized.
+
+    GET: Retrieve the details of a restaurant and its available menu items categorized by menu category.
+    """
     # Get the restaurant or return a 404 if not found
     restaurant = get_object_or_404(Restaurant, id=restaurant_id)
     
