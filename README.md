@@ -1,5 +1,5 @@
 # MyRestaurant
-
+![Presentation video](media/restaurant_logos/restaurant-menu.mp4)
 
 ## Introduction
 
@@ -70,3 +70,8 @@ Here are some related projects:
 
 - [getscanmenu.com](https://getscanmenu.com/)
 - [TouchBistro](https://www.touchbistro.com/features/ipad-menu-management/)
+
+## Images
+![Presentation video](media/restaurant_logos/Screenshot%20from%202024-06-05%2022-01-11.png)
+![Presentation video](media/restaurant_logos/Screenshot%20from%202024-06-11%2019-12-07.png)
+![Presentation video](media/restaurant_logos/Screenshot%20from%202024-06-11%2019-11-40.png)
