@@ -1,5 +1,6 @@
 # MyRestaurant
 ![Presentation video](media/restaurant_logos/restaurant-menu.mp4)
+<iframe width="560" height="315" src="media/restaurant_logos/restaurant-menu.mp4" frameborder="0" allowfullscreen></iframe>
 
 ## Introduction
 
