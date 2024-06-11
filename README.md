@@ -1,5 +1,6 @@
 # MyRestaurant
 ![Presentation video](media/restaurant_logos/restaurant-menu.mp4)
+[![Video](media/restaurant_logos/Screenshot%20from%202024-06-11%2019-11-40.png)](media/restaurant_logos/restaurant-menu.mp4)
 <iframe width="560" height="315" src="media/restaurant_logos/restaurant-menu.mp4" frameborder="0" allowfullscreen></iframe>
 
 ## Introduction
