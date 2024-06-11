@@ -1,5 +1,9 @@
 # MyRestaurant
-<video src='restaurant_logos/restaurant-menu.mp4' width=180/>
+<video width="560" height="315" controls>
+  <source src="media/restaurant_logos/restaurant-menu.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
 
 ## Introduction
 
