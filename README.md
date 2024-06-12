@@ -10,7 +10,7 @@
 MyRestaurant is a dynamic and efficient restaurant menu manager. It allows reataurant owners to easily keep their menus up to date without having to print new ones every time there is an update, and the customer will just have to scan the QRCode of the restaurant and see their menu. For a live demo, visit [https://ludivsolutions.tech/]. To learn more about the development process and features, check out the [Final Project Blog Article].
 
 - **Deployed Site**: [https://ludivsolutions.tech/](https://ludivsolutions.tech/)
-- **Final Project Blog Article**: [Final Project Blog Article URL]
+- **Final Project Blog Article**: [MyRestaurant ALX Research Project](https://ludivinseunda.tech/blog/myrestaurant-alx-research-project)
 - **Author(s)**:
   - Ludivin Senunda tchouapi - [https://www.linkedin.com/in/ludivin-seunda-1593641ba/](https://www.linkedin.com/in/ludivin-seunda-1593641ba/)
   - Aisha Hammed - [https://www.linkedin.com/in/aisha-hammed/](https://www.linkedin.com/in/aisha-hammed/)
