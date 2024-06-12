@@ -13,7 +13,7 @@ MyRestaurant is a dynamic and efficient restaurant menu manager. It allows reata
 - **Final Project Blog Article**: [Final Project Blog Article URL]
 - **Author(s)**:
   - Ludivin Senunda tchouapi - [https://www.linkedin.com/in/ludivin-seunda-1593641ba/](https://www.linkedin.com/in/ludivin-seunda-1593641ba/)
-  - Aisha Hammed - [Author 2 LinkedIn URL]
+  - Aisha Hammed - [[Author 2 LinkedIn URL]([https://www.linkedin.com/in/aisha-hammed/)]
 
 ## Installation
 
